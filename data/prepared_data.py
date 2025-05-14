@@ -12,12 +12,10 @@ config = TrainConfig()
 # ================== Data ==================
 train_data = torchaudio.datasets.LIBRISPEECH(root='../../', url='dev-clean', download=True)
 val_data = torchaudio.datasets.LIBRISPEECH(root='../../', url='test-clean', download=True)
-print(
-    f"next(t_l)['data'].shape: waveform, sample_rate, transcript, speaker_id, chapter_id, utterance_id:: {train_data[1]}")
+# print(f"next(t_l)['data'].shape: waveform, sample_rate, transcript, speaker_id, chapter_id, utterance_id:: {train_data[1]}")
 
 train_transforms = nn.Sequential(  # (batch ,channel, feature, time)
-    torchaudio.transforms.MelSpectrogram(sample_rate=16000, n_mels=config.input_features),
-    # Coverts raw audio waveform into a Mel-scaled spectogram
+    torchaudio.transforms.MelSpectrogram(sample_rate=16000, n_mels=config.input_features),  # Coverts raw audio waveform into a Mel-scaled spectogram
     torchaudio.transforms.FrequencyMasking(freq_mask_param=15),  # Randomly masks frequency bands in the Mel spectogram
     torchaudio.transforms.TimeMasking(time_mask_param=35)  # Randomly m,asks time steps in the Mel spectogram
 )
@@ -39,7 +37,7 @@ for instance in all_data:
     if label_len > label_max_length:
         label_max_length = label_len
 
-print(f"tensor_mex_length:{tensor_mex_length}, label_max_length: {label_max_length}")
+# print(f"tensor_mex_length:{tensor_mex_length}, label_max_length: {label_max_length}")
 
 # ======================= Alpha Encoder =======================
 alphas = ["'", ' ',
@@ -91,6 +89,6 @@ Val_Loader = DataLoader(LibriSpeechDataset(data=val_data, transform=val_transfor
                         batch_size=config.val_batch_size,
                         shuffle=True)
 
-t_l = iter(Train_Loader)
-print(next(t_l)['data'].shape)
+# t_l = iter(Train_Loader)
+# print(next(t_l)['data'].shape)
 
