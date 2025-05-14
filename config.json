@@ -1,0 +1,22 @@
+{
+    "input_features": 128,
+    "train_batch_size": 8,
+    "val_batch_size": 8,
+    "epochs": 5,
+    "lr": 1e-05,
+    "res_cnn_input_channels": 32,
+    "res_cnn_output_channels": 32,
+    "res_cnn_kernel_size": 3,
+    "res_cnn_stride": 1,
+    "res_cnn_padding": 1,
+    "res_cnn_dropout_prob": 0.1,
+    "num_res_cnn": 3,
+    "bi_rnn_input_size": 512,
+    "bi_rnn_hidden_size": 512,
+    "bi_rnn_num_layers": 1,
+    "bi_rnn_dropout_prob": 0.1,
+    "num_rnn": 5,
+    "cl_input_size": 1024,
+    "cl_dropout_prob": 0.1,
+    "cl_num_classes": 29
+}
