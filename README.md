@@ -3,21 +3,27 @@
 
 
 ## Table Of Content
-* [Project](#project)
+* [About Project](#project)
 * [Architecture](#architecture)
 * [Dataset](#dataset)
 * [Getting Started](#getting-started)
 
 --------------------------------------------------------------------------------
-<h1 id="project" align="left">🤖 Project</h1>
+<h1 id="project" align="left">🤖 About Project</h1>
 
-The main objective of this project is to recognize speech and provide transcripts associated with speech in real time.
+The main objective of this project is to recognize speech and provide transcripts associated with speech in real time. The architecture is compact but efficient, leveraging a well-structured dataset provided by the **TorchAudio** library.
 
 ---
 
 <h1 id="architecture" align="left">🧠 Architecture</h1>
 
+The architecture of the **Speech Recognition** model is quite simple, but effective. Thus, it presents a first 2D convolutional layer, followed by a linear one that will transfer a block of Residual Convolutional layers, then a Bidirectional GRU and last but not least the final, linear, classification layers.
 
+The **Residual Convolutional Block** in turn features two 2D Convolutional layers and a Residual connection between the beginning and the end. Before each convolution layer there is a dropout regularization and a GELU activation function
+
+The **Bidirectional GRU** block consists of a normalization layer, a multi-layer gated recurrent unit (GRU) RNN, and a Dropout regularizer.
+
+Finally, the combination of all layers forms the Speech Recognition model.
 
 ---
 
@@ -33,11 +39,11 @@ Next, the dataset was transformed into a Mel Spectogram so that the model, which
 
 1. Clone the repository:
 ``` git clone git@github.com:AndromedaOMA/Speech_Recognition.git ```
-2. Browse through my work, stay curious, and feel free to connect with me!
+2. Have fun!
 
 ---
 
 > 📝 **Note**:  
-> This resume was developed as a personal initiative to showcase my projects and connect with like-minded professionals. It reflects my passion for building, learning, and sharing.
+> By completing this project, we emphasized our knowledge of Deep Learning in order to develop and complete the bachelor's project that solves the Speech Enhancement task.
 
 * [Table Of Content](#table-of-content)
