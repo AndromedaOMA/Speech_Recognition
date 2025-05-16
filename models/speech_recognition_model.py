@@ -6,29 +6,23 @@ from configs.train_configs import TrainConfig
 config = TrainConfig()
 
 
-# ================= Model =================
-
 # ======================= ResidualCNN =======================
 class ResidualCNN(nn.Module):
     def __init__(self, input_features, in_channels, out_channels, kernel, stride, padding, dropout_probability, device):
         super().__init__()
-        self.norm1 = nn.LayerNorm(input_features)
-        self.norm2 = nn.LayerNorm(input_features)
-        self.conv_1 = nn.Conv2d(in_channels, out_channels, kernel, stride, padding)
-        self.conv_2 = nn.Conv2d(in_channels, out_channels, kernel, stride, padding)
-        self.drop_1 = nn.Dropout(dropout_probability)
-        self.drop_2 = nn.Dropout(dropout_probability)
+        self.norm = nn.LayerNorm(input_features)
+        self.conv = nn.Conv2d(in_channels, out_channels, kernel, stride, padding)
+        self.drop = nn.Dropout(dropout_probability)
 
     def forward(self, batch):
         residue = batch
-        batch = f.gelu(self.norm1(batch))
-        batch = self.drop_1(batch)
-        batch = self.conv_1(batch)
-        batch = f.gelu(self.norm2(batch))
-        batch = self.drop_2(batch)
-        batch = self.conv_2(batch)
+        batch = f.gelu(self.norm(batch))
+        batch = self.drop(batch)
+        batch = self.conv(batch)
+        batch = f.gelu(self.norm(batch))
+        batch = self.drop(batch)
+        batch = self.conv(batch)
         return batch + residue
-
 
 
 # ======================= BidirectionalGRU =======================
@@ -46,8 +40,7 @@ class BidirectionalGRU(nn.Module):
         return output
 
 
-
-# =======================SpeechRecognitionModel =======================
+# ======================= SpeechRecognitionModel =======================
 class SpeechRecognitionModel(nn.Module):
     def __init__(self, config: TrainConfig, device):
         super().__init__()
