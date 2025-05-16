@@ -6,34 +6,30 @@
 * [Project](#project)
 * [Architecture](#architecture)
 * [Dataset](#dataset)
-* [Getting_Started](#getting_started)
+* [Getting Started](#getting-started)
 
 --------------------------------------------------------------------------------
-## 📄 Project
+<h1 id="project" align="left">🤖 Project</h1>
 
-Explore a detailed overview of my **personal achievements**, **projects**, and **professional journey** through the interactive resume below. It includes links to source code, press articles, and more.
-
-<div align="left">
-  <a href="https://personal-resume-sage.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/View%20My%20Resume-Click%20Here-blue?style=for-the-badge" alt="View Resume Button">
-  </a>
-</div>
+The main objective of this project is to recognize speech and provide transcripts associated with speech in real time.
 
 ---
 
-## 📄 Dataset
+<h1 id="architecture" align="left">🧠 Architecture</h1>
 
-Explore a detailed overview of my **personal achievements**, **projects**, and **professional journey** through the interactive resume below. It includes links to source code, press articles, and more.
 
-<div align="left">
-  <a href="https://personal-resume-sage.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/View%20My%20Resume-Click%20Here-blue?style=for-the-badge" alt="View Resume Button">
-  </a>
-</div>
 
 ---
 
-## 🚀 Getting_Started
+<h1 id="dataset" align="left">📄 Dataset</h1>
+
+Dataset provided via the **TorchAudio** library. The labeled dataset is **LIBRISPEECH**: where the input is given by audio sequences with a sampling rate of 16k, and the target is given by transcript texts associated with the audio sequences.
+
+Next, the dataset was transformed into a Mel Spectogram so that the model, which contains convolutional Residual layers, could process them efficiently. Before loading and injecting the dataset into the model, we will pad each sample in the set to the calculated maximum size.
+
+---
+
+<h1 id="getting-started" align="left">🚀 Getting Started</h1>
 
 1. Clone the repository:
 ``` git clone git@github.com:AndromedaOMA/Speech_Recognition.git ```
