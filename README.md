@@ -4,7 +4,7 @@
 
 ## Table Of Content
 * [About Project](#project)
-* [Architecture](#architecture)
+* [Architecture Overview](#architecture)
 * [Dataset](#dataset)
 * [Getting Started](#getting-started)
 
