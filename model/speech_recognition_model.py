@@ -61,7 +61,7 @@ class SpeechRecognitionModel(nn.Module):
                                hidden_size=config.bi_rnn_hidden_size,
                                num_layers=config.bi_rnn_num_layers,
                                dropout_probability=config.bi_rnn_dropout_prob,
-                               device = device) for i in range(config.num_rnn)])
+                               device=device) for i in range(config.num_rnn)])
         self.classifier = nn.Sequential(
             nn.Linear(config.cl_input_size, config.cl_input_size // 2),
             nn.GELU(),
