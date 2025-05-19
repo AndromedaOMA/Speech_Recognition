@@ -4,7 +4,7 @@
 
 ## Table Of Content
 * [About Project](#project)
-* [Architecture](#architecture)
+* [Architecture Overview](#architecture)
 * [Dataset](#dataset)
 * [Getting Started](#getting-started)
 
@@ -15,15 +15,21 @@ The main objective of this project is to recognize speech and provide transcript
 
 ---
 
-<h1 id="architecture" align="left">🧠 Architecture</h1>
+<h1 id="architecture" align="left">🧠 Architecture Overview</h1>
 
-The architecture of the **Speech Recognition** model is quite simple, but effective. Thus, it presents a first 2D convolutional layer, followed by a linear one that will transfer a block of Residual Convolutional layers, then a Bidirectional GRU and last but not least the final, linear, classification layers.
+The **SpeechRecognitionModel** is a deep neural architecture designed to perform **automatic speech recognition (ASR)**. It processes 2D audio features, typically spectrograms or log-Mel filterbanks, and converts them into class predictions such as character sequences, phonemes, or subword units. The model is composed of a convolutional front-end, a series of residual convolutional layers, multiple bidirectional recurrent layers, and a classification head.
 
-The **Residual Convolutional Block** in turn features two 2D Convolutional layers and a Residual connection between the beginning and the end. Before each convolution layer there is a dropout regularization and a GELU activation function
+The model begins by receiving an input tensor of shape **(batch_size, 1, input_features, time_steps)**, where **1** is the number of audio channels, **input_features** typically represents the number of frequency bins, and **time_steps** indicates how many audio frames are processed. The first layer is a basic convolutional layer that increases the number of channels from 1 to 32 while preserving the temporal and frequency dimensions, thanks to padding.
 
-The **Bidirectional GRU** block consists of a normalization layer, a multi-layer gated recurrent unit (GRU) RNN, and a Dropout regularizer.
+Following the initial convolution, the model applies a sequence of **residual convolutional blocks** (ResidualCNN). Each ResidualCNN block contains layer normalization, GELU activation, dropout, and convolutional operations. These blocks also use residual connections to help preserve information across layers and stabilize training. The number of residual blocks is configurable and defined in the training configuration.
 
-Finally, the combination of all layers forms the Speech Recognition model.
+After the residual CNN stack, the output is reshaped into a 3D tensor to prepare it for the recurrent layers. This reshaping involves flattening the spatial dimensions (channels × frequency) while keeping the time dimension intact. A linear layer is applied to project this combined feature vector to a size suitable for recurrent processing.
+
+The next stage includes multiple **Bidirectional GRU (Gated Recurrent Unit) layers**. These layers are wrapped in layer normalization, followed by GELU activations and dropout. Each GRU layer processes the sequence bidirectionally, capturing both past and future context for each time step, which is crucial in understanding the temporal nature of speech. The number of GRU layers and their hidden size are also configurable.
+
+The final part of the model is a **classifier** that takes the output of the last GRU layer and maps it to a target dimension. The classifier is composed of a linear layer that reduces the feature size by half, followed by GELU activation and dropout for regularization, and a final linear layer that maps to the number of output classes, such as characters, phonemes, or word pieces.
+
+Overall, the **SpeechRecognitionModel** combines the spatial feature extraction power of CNNs, the temporal modeling capabilities of bidirectional GRUs, and a lightweight classifier head to produce accurate, context-aware predictions for speech recognition tasks. Its design is modular and highly configurable, making it suitable for a range of ASR datasets and applications.
 
 ---
 
@@ -38,12 +44,12 @@ Next, the dataset was transformed into a Mel Spectogram so that the model, which
 <h1 id="getting-started" align="left">🚀 Getting Started</h1>
 
 1. Clone the repository:
-``` git clone git@github.com:AndromedaOMA/Speech_Recognition.git ```
+****** git clone git@github.com:AndromedaOMA/Speech_Recognition.git ******
 2. Have fun!
 
 ---
 
 > 📝 **Note**:  
-> By completing this project, we emphasized our knowledge of Deep Learning in order to develop and complete the bachelor's project that solves the Speech Enhancement task.
+> By completing this project, I emphasized my knowledge of Deep Learning in order to develop and complete the bachelor's project that solves the Speech Enhancement task.
 
 * [Table Of Content](#table-of-content)
