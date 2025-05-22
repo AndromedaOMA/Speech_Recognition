@@ -43,9 +43,8 @@ Next, the dataset was transformed into a Mel Spectogram so that the model, which
 
 <h1 id="getting-started" align="left">🚀 Getting Started</h1>
 
-1. Clone the repository:
-****** git clone git@github.com:AndromedaOMA/Speech_Recognition.git ******
-2. Have fun!
+1. Clone the repository: ``git clone git@github.com:AndromedaOMA/Speech_Recognition.git``
+4. Have fun!
 
 ---
 
